@@ -38,8 +38,28 @@
 
 ## Research Timeline
 
-- [ ] Research Trade-Interdiction (navy doctrine)
-- [ ] Continue research as per table for 1937–1940
+### 1936
+- [ ] **Slot 1:** Basic Machine Tools → Concentration I
+- [ ] **Slot 2:** Electrical Engineering → Radio
+- [ ] **Slot 3 (Oct 36):** Support Equipment I → Engineers I
+- [ ] **Doctrine:** Superior Firepower (land)
+- [ ] **Doctrine:** Trade-Interdiction (navy)
+- [ ] **Doctrine:** Mobile Strike (tanks)
+
+### 1937
+- [ ] **Slot 1:** Construction II
+- [ ] **Slot 2:** Artillery I
+- [ ] **Slot 3:** Military Police I (Feb 38)
+
+### 1938
+- [ ] **Slot 1:** Concentration II
+- [ ] **Slot 2:** **Artillery II**
+- [ ] **Slot 3:** Flame-Tank Component
+
+### 1939-40
+- [ ] **Slot 1:** Train technology
+- [ ] **Slot 2:** Armoured-Car chassis (Oct 39)
+- [ ] **Slot 3:** Anti-Air I / Battlefield Support doctrine
 
 ## Construction & Rail
 
@@ -89,7 +109,20 @@
 
 ## Garrison & Occupation Laws
 
-- [ ] Build 120 Armoured Cars (Jan 41–Apr 41)
+### Wartime Phase
+- [ ] Set **Military Governor** occupation law
+- [ ] Use **4 CAV + MP I** template for garrison
+
+### Resistance < 10% Phase  
+- [ ] Switch to **Local Police Force** occupation law
+- [ ] Continue using **4 CAV + MP I** template
+
+### Post-Brazil Phase (Jul 41)
+- [ ] Research Armoured-Car chassis (Oct 39)
+- [ ] Build 120 Armoured Cars using 5-factory line (Jan 41–Apr 41)
+- [ ] Switch to **Civilian Oversight** law (coast only)
+- [ ] Use **6 Armoured-Car I + MP II** template for coastal states
+- [ ] Deploy garrisons: 6 AC + MP 2 on coast (35k manpower total)
 
 ## Spy Missions
 

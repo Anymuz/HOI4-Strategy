@@ -13,6 +13,9 @@ yarn-error.log*
 *.swo
 *~
 
+# custom folder for checlist usage
+user/
+
 # OS generated files
 .DS_Store
 .DS_Store?

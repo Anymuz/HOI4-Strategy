@@ -14,8 +14,8 @@ def normalize_text(text: str) -> str:
     """Normalize text by replacing various Unicode spaces with regular spaces."""
     return re.sub(r'[\s\xa0\u202f\u2009\u200a]+', ' ', text).strip()
 
-def extract_table_rows(content: str) -> List[Tuple[str, str, str, str]]:
-    """Extract table rows with better Unicode handling."""
+def extract_table_rows(content: str) -> List[Tuple[str, str, str, str, str]]:
+    """Extract table rows with better Unicode handling and support for 5 columns."""
     rows = []
     lines = content.split('\n')
     
@@ -25,12 +25,12 @@ def extract_table_rows(content: str) -> List[Tuple[str, str, str, str]]:
             parts = [normalize_text(part) for part in line.split('|')]
             if len(parts) >= 3:  # Skip lines that don't have enough columns
                 # Pad with empty strings if needed
-                while len(parts) < 6:
+                while len(parts) < 7:
                     parts.append("")
                 
-                col1, col2, col3, col4 = parts[1], parts[2], parts[3] if len(parts) > 3 else "", parts[4] if len(parts) > 4 else ""
-                if col1 and col2 and 'Date' not in col1 and 'Finish date' not in col1 and 'Asset' not in col1:
-                    rows.append((col1, col2, col3, col4))
+                col1, col2, col3, col4, col5 = parts[1], parts[2], parts[3] if len(parts) > 3 else "", parts[4] if len(parts) > 4 else "", parts[5] if len(parts) > 5 else ""
+                if col1 and col2 and 'Date' not in col1 and 'Finish date' not in col1 and 'Asset' not in col1 and 'Slot #' not in col1:
+                    rows.append((col1, col2, col3, col4, col5))
     
     return rows
 
@@ -83,28 +83,80 @@ def extract_government_timeline(content: str) -> List[str]:
     return items
 
 def extract_research_timeline(content: str) -> List[str]:
-    """Extract research timeline items."""
+    """Extract research timeline items with detailed year-by-year breakdown."""
     items = []
     research_section = re.search(r"## 3[\s\xa0]*[·•‑-][\s\xa0]*[Rr]esearch[\s\xa0]*timeline(.+?)(?=## 4|$)", content, re.DOTALL | re.IGNORECASE)
     
     if research_section:
         section_content = research_section.group(1)
+        table_rows = extract_table_rows(section_content)
         
-        # Extract specific research items
-        if "Basic Machine Tools" in section_content:
-            items.append("Research Basic Machine Tools → Concentration I (Slot 1, 1936)")
-        if "Electrical Eng" in section_content:
-            items.append("Research Electrical Engineering → Radio (Slot 2, 1936)")
-        if "Support Eq I" in section_content:
-            items.append("Research Support Eq I → Engineers I (Slot 3, Oct 36)")
-        if "Superior Firepower" in section_content:
-            items.append("Research Superior Firepower (land doctrine)")
-        if "Trade" in section_content and "Interdiction" in section_content:
-            items.append("Research Trade-Interdiction (navy doctrine)")
-        if "Mobile Strike" in section_content:
-            items.append("Research Mobile Strike (tank doctrine)")
+        # Add section headers for each year
+        items.append("### 1936")
         
-        items.append("Continue research as per table for 1937–1940")
+        # Process table rows to extract slot-specific research
+        for row in table_rows:
+            slot, research_1936, research_1937, research_1938, research_1939_40 = row[0], row[1], row[2], row[3], row[4] if len(row) > 4 else ""
+            
+            if slot and research_1936 and 'Slot' in slot:
+                # Clean slot number
+                slot_clean = normalize_text(slot)
+                if "1" in slot_clean:
+                    items.append(f"**Slot 1:** {normalize_text(research_1936)}")
+                elif "2" in slot_clean:
+                    items.append(f"**Slot 2:** {normalize_text(research_1936)}")
+                elif "3" in slot_clean:
+                    items.append(f"**Slot 3 (Oct 36):** {normalize_text(research_1936)}")
+                    
+                # Add doctrine row
+                if "doctrine" in slot_clean.lower():
+                    doctrines = normalize_text(research_1936).split('•')
+                    for doctrine in doctrines:
+                        doctrine = doctrine.strip()
+                        if doctrine:
+                            items.append(f"**Doctrine:** {doctrine}")
+        
+        # Add subsequent years if research continues
+        if any("1937" in row[2] for row in table_rows if len(row) > 2):
+            items.append("### 1937")
+            for row in table_rows:
+                if len(row) > 2 and row[2] and 'Slot' in row[0]:
+                    slot_num = "1" if "1" in row[0] else "2" if "2" in row[0] else "3"
+                    research_item = normalize_text(row[2])
+                    if research_item and research_item != row[1]:  # Don't repeat 1936 research
+                        items.append(f"**Slot {slot_num}:** {research_item}")
+        
+        if any("1938" in row[3] for row in table_rows if len(row) > 3):
+            items.append("### 1938")
+            for row in table_rows:
+                if len(row) > 3 and row[3] and 'Slot' in row[0]:
+                    slot_num = "1" if "1" in row[0] else "2" if "2" in row[0] else "3"
+                    research_item = normalize_text(row[3])
+                    if research_item and research_item not in [row[1], row[2] if len(row) > 2 else ""]:
+                        # Mark important research in bold
+                        if "Art II" in research_item or "Artillery II" in research_item:
+                            items.append(f"**Slot {slot_num}:** **{research_item}**")
+                        else:
+                            items.append(f"**Slot {slot_num}:** {research_item}")
+        
+        if any(len(row) > 4 and row[4] for row in table_rows):
+            items.append("### 1939-40")
+            for row in table_rows:
+                if len(row) > 4 and row[4] and 'Slot' in row[0]:
+                    slot_num = "1" if "1" in row[0] else "2" if "2" in row[0] else "3"
+                    research_item = normalize_text(row[4])
+                    if research_item:
+                        items.append(f"**Slot {slot_num}:** {research_item}")
+        
+        # Extract doctrines if not already captured
+        if "Superior Firepower" in section_content and not any("Superior Firepower" in item for item in items):
+            if "### 1936" not in items:
+                items.append("### 1936")
+            items.extend([
+                "**Doctrine:** Superior Firepower (land)",
+                "**Doctrine:** Trade-Interdiction (navy)",
+                "**Doctrine:** Mobile Strike (tanks)"
+            ])
     
     return items
 
@@ -206,24 +258,75 @@ def extract_air_navy_snapshot(content: str) -> List[str]:
     return items
 
 def extract_garrison_occupation(content: str) -> List[str]:
-    """Extract garrison & occupation law items."""
+    """Extract garrison & occupation law items with detailed phases."""
     items = []
     garrison_section = re.search(r"## 9[\s\xa0]*[·•‑-][\s\xa0]*[Gg]arrison[\s\xa0]*&[\s\xa0]*occupation[\s\xa0]*laws(.+?)(?=## 10|$)", content, re.DOTALL | re.IGNORECASE)
     
     if garrison_section:
         section_content = garrison_section.group(1)
+        table_rows = extract_table_rows(section_content)
         
-        # Extract specific law changes
-        if "Military Governor" in section_content:
-            items.append("Set **Military Governor** during wartime")
-        if "Local Police Force" in section_content:
-            items.append("Switch to **Local Police Force** when resistance <10%")
-        if "Civilian Oversight" in section_content:
-            items.append("Set **Civilian Oversight** (coast) post-Brazil (Jul 41)")
+        # Process table rows for phases
+        wartime_items = []
+        resistance_items = []
+        post_brazil_items = []
         
-        # Extract armoured car building
-        if "120 cars" in section_content:
-            items.append("Build 120 Armoured Cars (Jan 41–Apr 41)")
+        for row in table_rows:
+            phase, law, template = row[0], row[1], row[2]
+            
+            if phase and law and 'Phase' not in phase:
+                phase_clean = normalize_text(phase)
+                law_clean = normalize_text(law)
+                template_clean = normalize_text(template)
+                
+                if "Wartime" in phase_clean:
+                    wartime_items.extend([
+                        f"Set **{law_clean}** occupation law",
+                        f"Use **{template_clean}** template for garrison"
+                    ])
+                elif "Resistance" in phase_clean or "10" in phase_clean:
+                    resistance_items.extend([
+                        f"Switch to **{law_clean}** occupation law",
+                        f"Continue using **{template_clean}** template"
+                    ])
+                elif "Post" in phase_clean or "Brazil" in phase_clean or "Jul 41" in phase_clean:
+                    post_brazil_items.extend([
+                        f"Switch to **{law_clean}** law (coast only)",
+                        f"Use **{template_clean}** template for coastal states"
+                    ])
+        
+        # Add structured sections
+        if wartime_items:
+            items.append("### Wartime Phase")
+            items.extend(wartime_items)
+            
+        if resistance_items:
+            items.append("### Resistance < 10% Phase")
+            items.extend(resistance_items)
+            
+        if post_brazil_items:
+            items.append("### Post-Brazil Phase (Jul 41)")
+            items.extend(post_brazil_items)
+        
+        # Extract armoured car details from text
+        if "chassis researched Oct 39" in section_content:
+            if not post_brazil_items:
+                items.append("### Post-Brazil Phase (Jul 41)")
+            items.insert(-len(post_brazil_items) if post_brazil_items else -1, "Research Armoured-Car chassis (Oct 39)")
+        
+        if "120 cars" in section_content or "5‑factory line" in section_content:
+            build_match = re.search(r"(\d+)\s*cars.*?(\d+).*?factory.*?line.*?\((.*?)\)", section_content)
+            if build_match:
+                cars, factories, timeframe = build_match.groups()
+                items.append(f"Build {cars} Armoured Cars using {factories}-factory line ({normalize_text(timeframe)})")
+            else:
+                items.append("Build 120 Armoured Cars using 5-factory line (Jan 41–Apr 41)")
+        
+        # Extract deployment details
+        deployment_match = re.search(r"(\d+)\s*AC.*?MP.*?coast.*?\((\d+)\s*k\s*manpower\)", section_content)
+        if deployment_match:
+            ac_count, manpower = deployment_match.groups()
+            items.append(f"Deploy garrisons: {ac_count} AC + MP 2 on coast ({manpower}k manpower total)")
     
     return items
 
