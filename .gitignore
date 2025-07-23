@@ -9,6 +9,7 @@ yarn-error.log*
 .vscode/settings.json
 .vscode/launch.json
 vscode-custom.css
+.vscode
 .idea
 *.swp
 *.swo
@@ -16,6 +17,9 @@ vscode-custom.css
 
 # custom folder for checlist usage
 user/
+
+# Archieve for guides hat were incorrect
+guides-archive/
 
 # OS generated files
 .DS_Store
