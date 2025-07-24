@@ -1,0 +1,75 @@
+name: Manual Checklist Generation
+
+on:
+  workflow_dispatch:
+    inputs:
+      regenerate_all:
+        description: 'Regenerate all checklists (ignore existing files)'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  generate-checklists:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: List guide files
+      run: |
+        echo "🔍 Found these .md guide files:"
+        find . -name "*.md" -not -path "./checklists/*" -not -name "README.md" | sort
+    
+    - name: Clear existing checklists (if regenerating all)
+      if: ${{ github.event.inputs.regenerate_all == 'true' }}
+      run: |
+        echo "🗑️ Clearing existing checklists for full regeneration..."
+        rm -rf checklists/
+        mkdir -p checklists/
+    
+    - name: Generate checklists
+      run: |
+        echo "🔄 Generating checklists..."
+        python .github/scripts/generate_simple_checklist.py
+    
+    - name: Show results
+      run: |
+        echo "📋 Generated checklists:"
+        ls -la checklists/ || echo "No checklists directory found"
+    
+    - name: Check for changes
+      id: verify-changed-files
+      run: |
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "changes=true" >> $GITHUB_OUTPUT
+          echo "✅ Changes detected:"
+          git status --porcelain
+        else
+          echo "changes=false" >> $GITHUB_OUTPUT
+          echo "ℹ️ No changes to commit"
+        fi
+    
+    - name: Commit and push changes
+      if: steps.verify-changed-files.outputs.changes == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Manual Checklist Generator"
+        git add .
+        git commit -m "🔄 Manual checklist generation
+        
+        Regenerated all checklists via workflow_dispatch
+        
+        [skip ci]"
+        git push
