@@ -1,155 +1,260 @@
-# Complete Fascist‑Argentina Guide (HoI4 1.17 – all DLC) - Checklist
+# Strategy Guide - Interactive Checklist
 
-> **Interactive checklist for following the [Complete Fascist‑Argentina Guide (HoI4 1.17 – all DLC)](../argentina_fascist_1.17.md) strategy guide.**
+> **Generated from [Argentina_Fascist_1.17.md](../Argentina_Fascist_1.17.md)**
 > 
 > Tick each action as you complete it during gameplay.
 
-## National Focus Timeline
+## 0. Day-One Snapshot (01 Jan 1936)
 
-- [ ] **Work with the Nationalists** (04 Feb 36)
-- [ ] Crack‑down on Corruption (11 Mar 36)
-- [ ] Industrial Expansion (16 Apr 36)
-- [ ] Rapid Urbanisation (21 May 36)
-- [ ] Import Substitution (25 Jun 36)
-- [ ] **Support Radical Nationalism** (30 Jul 36)
-- [ ] **Universidad de Buenos Aires** (08 Oct 36)
-- [ ] *Automatic flip → fascist* (25 Aug 37)
-- [ ] Ultimatum to Uruguay (35 d) (29 Sep 37)
-- [ ] Expand Steel Extraction (03 Nov 37)
-- [ ] Ultimatum to Paraguay (08 Dec 37)
-- [ ] Strength of the Common Soldier (12 Jan 38)
-- [ ] Ultimatum to Chile (16 Feb 38)
-- [ ] Aluminium Expansion (23 Mar 38)
-- [ ] Ultimatum to Bolivia (27 Apr 38)
-- [ ] **Cut Ties With Britain** (06 Aug 38)
-- [ ] **The Old Enemy** (70 d) – Brazil WG** (19 Oct 38)
+- [ ] **1**: 5x 9 INF, 2x 3 MTN, 1x 9 CAV (no supports) in 2 BB, 3 CA, 2 CL, 9 DD, **1 Dockyard**, 3 Subs
 
-## Government & Law Timeline
+## 1. National-Focus Timeline (correct durations; shared branch clarified)
 
-- [ ] Appoint Fascist Demagogue (Jan 36)
-- [ ] Appoint Partial Mobilisation (Aug 37)
-- [ ] Appoint War Industrialist (Sep 37)
-- [ ] Appoint **Chief of Army – Carlos Marquez** (+10 % INF ATK) (Jan 38)
-- [ ] Appoint Captain of Industry (Jul 38)
-- [ ] Appoint Chief of Air (Tactical) (Apr 39)
-- [ ] Appoint Military High Command – Armoured (Nov 40)
-- [ ] Keep **Export Focus** the whole run
-- [ ] Import 8 rubber from British Malaya until Brazil's rubber is captured
+- [ ] **01 Jan 36 → 11 Mar 36**: Roberto María Ortiz
+- [ ] **11 Mar → 20 May 36**: Work With The Nationalists
+- [ ] **20 May → 29 Jul 36**: Cut Ties With Britain
+- [ ] **29 Jul → 02 Sep 36**: Support Radical Nationalism
+- [ ] **02 Sep → 07 Oct 36**: Corporatism
+- [ ] **07 Oct → 16 Dec 36**: Reestablish Ligas Patrióticas
+- [ ] **16 Dec 36 → 24 Feb 37**: Fascist Researchers
+- [ ] **24 Feb → 05 May 37**: Encourage German Investments
+- [ ] **05 May → 14 Jul 37**: Guardia Nacional
+- [ ] **14 Jul → 22 Sep 37**: Rapid Militarization
+- [ ] **22 Sep → 27 Oct 37**: War Division
+- [ ] **27 Oct 37 → 05 Jan 38**: Argentina First
+- [ ] **05 Jan → 16 Mar 38**: Dominate the South
+- [ ] **16 Mar → 20 Apr 38**: Preparations for War
+- [ ] **20 Apr → 29 Jun 38**: Paraguay Ultimatum **or** Conquer
+- [ ] **29 Jun → 07 Sep 38**: Establishing a Foothold (Uruguay)
+- [ ] **07 Sep → 16 Nov 38**: Chile Ultimatum **or** Reach Out
+- [ ] **16 Nov 38 → 25 Jan 39**: The Old Enemy
+- [ ] **25 Jan → 01 Mar 39**: South American Unity
+- [ ] **01 Mar → 10 May 39**: Integrate Operation Bolívar
+- [ ] **10 May → 19 Jul 39**: Release Hellmuth
+- [ ] **19 Jul → 27 Sep 39**: Anti-American Propaganda
 
-## Research Timeline
+## 2. Government, Laws, Officer-Corps, MIOs & Theorists Timeline
 
-### 1936
-- [ ] **Slot 1:** Basic Machine Tools → Concentration I
-- [ ] **Slot 2:** Electrical Engineering → Radio
-- [ ] **Slot 3 (Oct 36):** Support Equipment I → Engineers I
-- [ ] **Doctrine:** Superior Firepower (land)
-- [ ] **Doctrine:** Trade-Interdiction (navy)
-- [ ] **Doctrine:** Mobile Strike (tanks)
+- [ ] **01 Jan 36**: 1 → Max research & PEC early.
+- [ ] **11 Mar 36**: 150 → Industrial Concern
+- [ ] **20 May 36**: 150 on Political Advisor
+- [ ] **29 Jul 36**: **Early Mobilization** → 1
+- [ ] **16 Dec 36**: 30 → Intel Agency
+- [ ] **10 Jan 37**: **Offensive Army** → 1
+- [ ] **24 Feb 37**: 20 on Army Spirit (Academy)
+- [ ] **15 Mar 37**: **Infantry Expert** → 1
+- [ ] **01 Jun 37**: **Artillery Specialist** → 1
+- [ ] **05 May 37**: Extensive Conscription *(optional)* → 1
+- [ ] **14 Jul 37**: 20 → **Professional Officer Corps**
+- [ ] **22 Sep 37**: Deploy 150 for Chief of Air Force from Air Superiority (or Ground Support)
+- [ ] **27 Oct 37**: Deploy 50 for High Command (Air) from Air Superiority Expert
+- [ ] **05 Jan 38**: 20 on Army Spirit (Division Cmd)
+- [ ] ****20 Apr 38****: **Trade** in **Import 8 Steel (USA, 1 CIV) + 8 Aluminium (Dutch, 1 CIV)**
+- [ ] **29 Jun 38**: Commerce Raiding → 2
+- [ ] **10 Aug 38**: Design 50 - Submarine Specialist
+- [ ] **25 Jan 39**: **War Economy** → 1
+- [ ] **01 Mar 39**: Focus effect on +2 Operatives (Int. Bolívar)
+- [ ] **Jan-Mar 40**: Service by Requirement *(if Tier 2/3 wars)* → 2/3
+- [ ] **01 Feb 40**: **Armored Warfare** *or* **Artillery Theorist** → 1
+- [ ] **15 Mar 40**: 50 in **MIO - Army**
+- [ ] **01 Jun 40**: 50 → **FMA**
+- [ ] **01 Aug 40**: 50 **Tandanor Shipyards**
+- [ ] **Post-Brazil (Jul ’39)**: **Trade** in **Cancel both imports**
+- [ ] **Radar phase (Tier 2)**: 20 → Air Spirit (Command)
+- [ ] **Atlantic prep**: Design 20 - Naval Reform
+- [ ] **Post doctrines**: 20 → Army Spirit swap
+- [ ] **Late ’41**: Air Warfare / Naval Aviation → 3
+- [ ] *(No focuses here. Imports patched in bold.)*
+- [ ] **MIO usage:** Activate → assign on research (factory icon) → contract on production lines (cog) to earn funds for traits.
 
-### 1937
-- [ ] **Slot 1:** Construction II
-- [ ] **Slot 2:** Artillery I
-- [ ] **Slot 3:** Military Police I (Feb 38)
+## 3. Research Timeline (slot 3 on 24 Feb 37)
 
-### 1938
-- [ ] **Slot 1:** Concentration II
-- [ ] **Slot 2:** **Artillery II**
-- [ ] **Slot 3:** Flame-Tank Component
+- [ ] **Apr 36**: Basic Machine Tools
+- [ ] **Apr 36**: Construction I
+- [ ] **Sep 36**: Elec. Mech Eng → Radio
+- [ ] **Aug 36**: Support Equipment I
+- [ ] **Dec 36**: Improved Machine Tools
+- [ ] **Dec 36**: Construction II
+- [ ] **Jun 37**: Engineers I
+- [ ] **Apr 37**: Infantry Equipment II
+- [ ] **Mar 37**: Artillery I
+- [ ] **Sep 37**: Trucks
+- [ ] **Jul 37**: Recon I
+- [ ] **Oct 37**: **Military Police I**
+- [ ] **Aug 37**: Radio Detection I
+- [ ] **Dec 37**: Basic Computing
+- [ ] **Dec 37**: Field Hospital I
+- [ ] **Sep 37**: Deploy Jan 38 for 3 from Small Airframe ’36 + Fighter mods
+- [ ] **May 38**: Medium Tank ’39
+- [ ] **May 38**: Logistics I
+- [ ] **Apr 38**: AA I
+- [ ] **Sep 38**: Flame Tank module + Support AA II
+- [ ] **Sep 38**: Maintenance I
+- [ ] **Sep 38**: Decryption I
+- [ ] **Feb 39**: Med gun/armor upgrades
+- [ ] **Jan 39**: CAS ’36 + modules
+- [ ] **Jan 39**: Computing II
+- [ ] **Mar 40**: **Armored Car I**
+- [ ] **1939-40**: Execute war plan (see original guide for strategy details)
+- [ ] **39-41**: Design Trade Interdiction depth + NAV - Atlantic war.
+- [ ] **40+**: Nukes / Rockets → 3
 
-### 1939-40
-- [ ] **Slot 1:** Train technology
-- [ ] **Slot 2:** Armoured-Car chassis (Oct 39)
-- [ ] **Slot 3:** Anti-Air I / Battlefield Support doctrine
+## 4. Construction Timeline (resource patch doesn’t change queues)
 
-## Construction & Rail
+- [ ] **Jan 36 - Mar 36**: 3x CIV in Buenos Aires
+- [ ] **Mar 36 - Jul 36**: 3x CIV in Córdoba, Santa Fe
+- [ ] **Jul 36 - Oct 36**: 3x MIL in BA, Santa Fe
+- [ ] **16 Dec 36 - 15 Mar 37**: 1x MIL in BA
+- [ ] **Mar 37 - Apr 38**: MIL spam to **22 total** in BA, SF, Córdoba, San Luis
+- [ ] **16 Mar - 20 Apr 38**: **Do NOT build rails/hubs**
+- [ ] **+1 mo post-Brazil**: Infra 5 on Brazil corridors in SP, Paraná, RS
+- [ ] **Same**: State AA L3-4 in BA, Montevideo, SP
+- [ ] **After islands**: Coastal Fort 2 + AA 3 in Falklands, S. Georgia
+- [ ] **Optional**: Land Fort 2 in Andes passes
+- [ ] Radar phase → Aerodynamics Facility (if proj later)
 
-- [ ] Build 6 civs in Buenos Aires & Córdoba (Jan 36‑Aug 36:)
-- [ ] Upgrade Santa Cruz infra to 5 (25 Jun 36)
-- [ ] Build all new slots as military factories (Sep 36‑Aug 39:)
-- [ ] Build level-3 rail Buenos Aires → Santa Cruz → Porto Alegre (Feb 37‑07 Jul 39:)
+## 5. Factory-Swap Ladder (Production Timeline) - **with “Take From” column & imports context**
 
-## Factory-Swap Ladder
+**Complex production timeline - see original guide for detailed factory allocations and equipment targets**
 
-- [ ] **Oct 36** (7 mils): Add **Art I ×2**, Cut −1 Inf, −1 Support
-- [ ] **Aug 37** (12 mils): Add **Light Tank ×1**, Cut −1 Art
-- [ ] **Jan 38** (15 mils): Add **Fighter ×3**, Cut −2 Art, −1 Inf
-- [ ] **Jun 38** (18 mils): Add Art II back to 6 lines
-- [ ] **Jan 39** (20 mils): Add **CAS I ×2 + AA I ×1**, Cut −1 Support, −1 Inf, −1 Art
-- [ ] **Aug 39** (22 mils): Add **Trains ×1**, Cut −1 Inf
-- [ ] **Jan 40** (22 mils): Add Trains → **Trucks ×1**
-- [ ] **Nov 40** (26 mils): Add **Med Tank ×4**, Cut 4 rifle lines converted
+- [ ] Follow production schedule from original guide
+- [ ] **Jan 36**: Check original guide for factory changes
+- [ ] **Oct 36**: Check original guide for factory changes
+- [ ] **Dec 36**: Check original guide for factory changes
+- [ ] **Feb 37**: Check original guide for factory changes
+- [ ] **Jul 37**: Check original guide for factory changes
+- [ ] **Nov 37**: Check original guide for factory changes
+- [ ] ****Mar 38****: Check original guide for factory changes
+- [ ] **Jul 38**: Check original guide for factory changes
+- [ ] **Nov 38**: Check original guide for factory changes
+- [ ] **Jan-Mar 40**: Check original guide for factory changes
+- [ ] **Post-Brazil**: Check original guide for factory changes
 
-## Division Templates & Recruit Plan
+## 6. Army Grouping & Command Timeline
 
-- [ ] Train 8 × **7‑INF** (7/0) (Jan 36)
-- [ ] Duplicate → create **7 INF + 2 ART** template (new only) (Jan 37)
-- [ ] Convert 4 existing 7/0 → 7/2 (May 37)
-- [ ] 6 × **6 Mtn + 1 Art** queued (Jan 38)
-- [ ] 2 × **5 LT + 4 Mot** spearhead (Mar 38)
-- [ ] 12 × **42‑w (14 Inf + 6 Art + AA + Hosp)** fresh (Feb 40)
-- [ ] Old 7/2s upgrade to 42‑w piecemeal (Jul 40‑Mar 41)
-- [ ] Spearhead → **10 Med + 10 Mot** (Nov 40)
-- [ ] Add support companies: Engineers I (Jan 37), Flame‑Tank (Jul 39), Hospitals I (Jan 40).
+- [ ] **Jan 36**: Army Group A (North) → Gen. Justo
+- [ ] **Jan 36**: Army Group B (West) → Gen. Savio
+- [ ] **Jan 36**: Cav Corps → Gen. Mercante
+- [ ] **Dec 36**: Militia Corps in 5x Ligas
+- [ ] **Jul 37**: Promote FM → 1
+- [ ] **Nov 37**: Spearhead Corps (proto) → Gen. Baldrich
+- [ ] **15 Mar 38**: Execute war plan (see original guide for strategy details)
+- [ ] **Nov 38**: Execute war plan (see original guide for strategy details)
+- [ ] **Marine TF / Mech TF**: Amphibious / Panzer gen
 
-## Equipment Designs
+## 7. Division Templates & Recruit/Deploy Timeline
 
-- [ ] Design **“Pucará‑36” LT**
-- [ ] Design **Medium‑A (1940)**
-- [ ] Design **Flame support tank**
-- [ ] Design **“Lobo‑II” Sub**
-- [ ] Design **“Murature” DD** (optional)
-- [ ] Design **“FMA‑37” Fighter**
+- [ ] **01 Jan 36**: Exercise to Regular 5 9 INF
+- [ ] **15 Jan 36**: Queue 2 9 INF
+- [ ] **10 Jan 37**: Create inactive 1
+- [ ] **20 May 37**: Convert 2 7/2
+- [ ] **Train (ready Oct)**: 7/2
+- [ ] **05 Jan 38**: Add ART to MTN 2 3 MTN → 4 MTN + ART
+- [ ] **10 Jan 38**: Train 4 4 MTN + ART
+- [ ] **15 Mar 38**: Convert CAV 1 5 LT / 5 Mot
+- [ ] **01 Apr 38**: Train 1 5 LT / 5 Mot
+- [ ] **02 Feb 40**: Train in 12
+- [ ] **Upgrade olds → 42w**: 42w
+- [ ] **Convert LT → MED/Mot 20w**: 10 MED / 10 Mot + supports
+- [ ] **Jan 41**: Train 6 6 AC + MP II
+- [ ] **41+**: Train 6 20w Marines + ENG/Hosp
+- [ ] **41+**: Train 40w Mech (12 MECH / 8 MED)
 
-## Air & Navy Snapshot
+## 8. Equipment Designs (chronological)
 
-- [ ] Build **100** Fighters I
-- [ ] Build **120** CAS I
-- [ ] Build **20** (14 by Feb 40) Submarines “Lobo‑II”
-- [ ] Build 2 DD “Murature”
+**Equipment designs with modules and chassis details - see original guide for full specifications**
 
-## Garrison & Occupation Laws
+- [ ] **Mar 38**: **Light Flame Tank** in LT ’36
+- [ ] **Jul 38**: 75 mm med gun, Cast turret, Welded hull, Radio, Wet Ammo, 2x MG
+- [ ] **Nov 38**: CAS I variant in CAS ’36
+- [ ] **Nov 38**: Deploy Fighter I variant for Small ’36 from Engine +2, Weapons +1, Drop Tanks
+- [ ] **Jan 40**: Armored Car I on Reliability +1
+- [ ] **1939**: Design Sub II raider - Snorkel, Torps, Mini Sonar
+- [ ] **1940**: DD II screen in DD II
+- [ ] **1941**: Torp bays, Range tanks
+- [ ] **1942**: Design Mechanized I var. - 3
 
-### Wartime Phase
-- [ ] Set **Military Governor** occupation law
-- [ ] Use **4 CAV + MP I** template for garrison
+## 9. Air & Navy Snapshot
 
-### Resistance < 10% Phase  
-- [ ] Switch to **Local Police Force** occupation law
-- [ ] Continue using **4 CAV + MP I** template
+**Air/Navy deployment - check original guide for mission priorities, timing, and base assignments**
 
-### Post-Brazil Phase (Jul 41)
-- [ ] Research Armoured-Car chassis (Oct 39)
-- [ ] Build 120 Armoured Cars using 5-factory line (Jan 41–Apr 41)
-- [ ] Switch to **Civilian Oversight** law (coast only)
-- [ ] Use **6 Armoured-Car I + MP II** template for coastal states
-- [ ] Deploy garrisons: 6 AC + MP 2 on coast (35k manpower total)
+- [ ] Review this section in original guide
 
-## Spy Missions
+## # Air Plan
 
-- [ ] Agency + Crypto + Passive Defence (Jan‑Mar 36)
-- [ ] Build spy network in Brazil (Jun 37‑Oct 39)
-- [ ] Targeted Sabotage Hub (Recife) (Oct 39)
-- [ ] ****Break Brazil cipher** (+25 % ATK)** (4 Feb 40)
+- [ ] **Paraguay**: Deploy 1x30 FTR for Air Sup from Corrientes
+- [ ] **Uruguay**: Deploy 1x30 FTR, 1x20 CAS for Sup/CAS from BA / Montevideo
+- [ ] **Chile**: Deploy 2x40 FTR, 2x30 CAS for Sup/CAS from Mendoza / San Juan
+- [ ] **Brazil**: Deploy 3x70 FTR, 3x50 CAS for Sup/CAS from Porto Alegre, Curitiba
+- [ ] **Falklands**: Deploy 3x60 FTR, 2x40 NAV/CAS for Sup/Nav strike from TdF → Islands
+- [ ] **Majors**: Deploy 6x100 FTR, 4x60 NAV, 2xSTR for Sup/Nav/Strat from Caribbean/Mexico
 
-## War Playbook
+## # Navy Plan
 
-- [ ] ****Uruguay (Jun 38)****: 4 × 7/0 INF naval‑invade Montevideo
-- [ ] ****Paraguay (Sep 38)****: River pin, LT spearhead encircle
-- [ ] ****Chile (Apr 39)****: Naval Valparaíso; mountains push
-- [ ] ****Bolivia (Oct 39)****: CAS support + Mtn assault
-- [ ] ****Brazil (04 Feb 40)****: Land at Recife; 8 LT hug coast; 20 subs raid
-- [ ] **Brazil falls **18 May 41****: Convert spearhead to Med A
+- [ ] **Surface Fleet**: Deploy 2 BB, 3 CA, 2 CL, 9 DD for Shore bombard/escort from 1
+- [ ] **Sub Flotilla**: Design 6-9 Sub II - 2
+- [ ] **DD II screens, maybe CVL**: 3
 
-## Final Logistics Check (May 41)
+## 10. Garrisons & Occupation Laws
 
-- [ ] Verify ≈120 (civ + mil). factories (civ + mil)
-- [ ] Confirm 35 × 42‑w Inf‑Art‑AA divisions
-- [ ] Confirm 6 × Mtn divisions
-- [ ] Confirm 2 × 40‑w Med spearheads. spearheads
-- [ ] Check 6 AC + MP 2 on coast (35 k manpower). garrisons on coast
-- [ ] Verify 65 trains (55 need) in stockpile
-- [ ] Verify 1 050 trucks (800 need). in stockpile
-- [ ] Check compliance levels: Uruguay 64 %, Paraguay 58 %, Chile 52 %, Brazil coast 38 % — zero revolts, zero imports.
+- [ ] **Jun-Nov ’38**: **6x Ligas INF or 6x CAV**
+- [ ] **Jul ’38+**: **6x CAV + MP I**
+- [ ] **Brazil / big states**: Late ’39-’40 on Local Police Force
+- [ ] **Resistance spikes**: Any on Secret Police
+- [ ] **Tier 3 regions**: 1941+ in Martial Law → Military Gov
+
+## 11. Spy Missions Timeline
+
+- [ ] **16 Dec 36**: Create “S.I.” (+Passive Defense) Coup resist, unlock upgrades.
+- [ ] **Feb 37**: Execute war plan (see original guide for strategy details)
+- [ ] **Pre-Brazil**: (Optional) Collaboration Govt on Brazil on 1
+- [ ] **01 Mar 39**: Integrate Operation Bolívar
+- [ ] **10 May 39**: Release Hellmuth (optional) → 3
+- [ ] **Brazil war**: Execute war plan (see original guide for strategy details)
+- [ ] **Falklands prep**: Deploy Naval intel on UK zones for 2 from Better NAV strikes.
+- [ ] **USA plan**: Tech steal / Port infiltration on 3
+
+## 12. War Play-Book
+
+**War strategies and detailed battle plans - consult original guide for tactics, timing, and unit compositions**
+
+- [ ] **Paraguay**: Design 1 - 7/2 shock Asunción, MTN pin flank
+- [ ] **Uruguay**: 1 on 07 Sep 38+
+- [ ] **Chile**: 1 in 16 Nov 38+
+- [ ] **Brazil**: Design 1 - Dual thrust: South coast & Mato Grosso encirclements
+- [ ] **Falklands vs UK**: 2 in Post-Unity
+- [ ] **USA/UK mainland**: Design 3 - Caribbean staging; invade Mexico/Texas
+
+## 13. Final Logistics Targets
+
+- [ ] Target: Guns II → 80 000
+- [ ] **Artillery I/II**: (Slot 1) 42w lines.
+- [ ] **5 000**: 1 → Supports/MP.
+- [ ] **1 500**: 1 → Logistics.
+- [ ] **Trains**: 25 1 Rail supply.
+- [ ] **AA (Support)**: 1 500 in 1
+- [ ] **Light Flame Tanks**: (Slot 1) 6 per 42w INF + reserve.
+- [ ] **Medium Tanks**: (Slot 1) Spearheads.
+- [ ] **CAS**: Design 200 - 3 wings.
+- [ ] **Fighters**: Design 250 - 3 wings.
+- [ ] **300-400 (by Mar ’40)**: Garrisons.
+- [ ] **State AA**: +1 000 in 2
+- [ ] **Convoys**: 300 on 2/3
+- [ ] **NAV**: Design 300 - RN/USN interdiction.
+
+## 14. Doctrines & XP Budget
+
+- [ ] Tree → Path
+- [ ] **Delay → Shock & Awe**: \~210 → Mid ’41
+- [ ] **Air**: Design **Operational Integrity** - \~180
+- [ ] **Naval**: Design **Trade Interdiction** - \~90
+- [ ] **Optional Naval**: Design Carrier/Fleet-in-Being - 41+
+
+## 15. Victory Ladder
+
+- [ ] Target: 1 → **Greater Argentina**
+- [ ] **2**: **Malvinas Back** in Falklands & S. Georgia owned, fortified; UK can’t retake.
+- [ ] **3**: **Hemisphere Security** on UK/USA can’t project into SA (capitulated/contained); you control South Atlantic & Caribbean.
 
 ---
 
@@ -158,6 +263,6 @@
 - **Print this checklist** or keep it open in a second monitor/device
 - **Check off items** as you complete them in-game
 - **Use Ctrl+F** to quickly find specific dates or actions
-- **Refer back to the [main guide](../argentina_fascist_1.17.md) for detailed explanations**
+- **Refer back to the [source file](../Argentina_Fascist_1.17.md) for detailed explanations**
 
-*This checklist was auto-generated from the strategy guide.*
+*This checklist was auto-generated from Argentina_Fascist_1.17.md.*

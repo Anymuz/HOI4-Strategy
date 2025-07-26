@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HOI4 Strategy Guide",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "tiers": {
+          "type": "object",
+          "properties": {
+            "1": { "type": "string" },
+            "2": { "type": "string" },
+            "3": { "type": "string" }
+          },
+          "required": ["1", "2", "3"]
+        },
+        "patch": { "type": "string" },
+        "dlc": { "type": "string" }
+      },
+      "required": ["title", "tiers", "patch", "dlc"]
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "notes": { "type": "array", "items": { "type": "string" } },
+          "columns": { "type": "array", "items": { "type": "string" } },
+          "rows": { "type": "array", "items": { "type": "array" } },
+          "air": {
+            "type": "object",
+            "properties": {
+              "columns": { "type": "array", "items": { "type": "string" } },
+              "rows": { "type": "array", "items": { "type": "array" } }
+            },
+            "required": ["columns", "rows"]
+          },
+          "navy": {
+            "type": "object",
+            "properties": {
+              "columns": { "type": "array", "items": { "type": "string" } },
+              "rows": { "type": "array", "items": { "type": "array" } }
+            },
+            "required": ["columns", "rows"]
+          },
+          "used": { "type": "boolean" },
+          "project": { "type": "string" }
+        },
+        "required": ["id", "name"]
+      }
+    }
+  },
+  "required": ["meta", "sections"]
+}
