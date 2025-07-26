@@ -70,8 +70,6 @@ HOI4-Strategy/
 ├── guides/                        # Generated guide outputs  
 ├── data/                          # Input JSON files
 ├── schema.json                    # JSON schema validation
-├── guide.md                       # Example output
-├── argentina_fascist_1.17.md     # Example country guide
 ├── WORKFLOW.md                    # Detailed automation guide
 └── README.md                      # This file
 ```
