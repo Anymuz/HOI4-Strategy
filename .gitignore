@@ -18,6 +18,16 @@ vscode-custom.css
 # custom folder for checlist usage
 user/
 
+# GitHub Copilot workspace instructions
+.github/copilot-instructions.md
+
+# Knowledge base files for ChatGPT model (not part of repo functionality)
+knowledge_base/
+*_complete.txt
+*_corrected.txt
+knowledge_base_status.txt
+focus_trees_complete.txt
+
 # Archieve for guides hat were incorrect
 guides-archive/
 

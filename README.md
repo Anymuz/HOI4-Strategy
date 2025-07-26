@@ -1,75 +1,89 @@
 # HOI4 Strategy Guides
 
-This repository contains AI generated strategy guides and walkthrough content for Hearts of Iron IV.
+This repository provides automation tools for processing Hearts of Iron IV strategy guides. It contains utilities for converting JSON strategy data into well-formatted markdown guides and checklists, with built-in quality control and automation workflows.
 
-## About
+## Features
 
-This is a collection of Markdown files containing strategic insights, tips, and guides for Hearts of Iron IV gameplay.
+- **JSON to Markdown Conversion:** Transform structured JSON strategy data into readable guides
+- **Automated Checklist Generation:** Create actionable checklists from strategy guides  
+- **Character Encoding Fix:** Clean up encoding issues in JSON files
+- **CI/CD Pipeline:** Automated processing via GitHub Actions
+- **Quality Control:** Schema validation for consistent guide structure
 
-Soon there will be a custom chatGPT that you can use on their platform to produce these guides and the final response can be copied and pasted straight to an `.json` file for your pull request. The [workflow](WORKFLOW.md) will handle the rest.
+## Usage with Custom GPT
+
+You can use a custom ChatGPT to generate JSON strategy guides that work with this repository's automation tools. The JSON structure is predefined by the schema and rules - simply request the country and strategy you want:
+
+### Example Prompts
+
+**Basic Country Strategy:**
+```
+Generate a strategy guide for Germany focusing on rapid expansion in Europe
+```
+
+**Specific Approach:**
+```
+Create a fascist Argentina guide focusing on South American domination and naval expansion
+```
+
+**Alternative Path:**
+```
+Generate a democratic United States guide emphasizing industrial buildup and late-war intervention
+```
+
+**Focus Tree Strategy:**
+```
+Create a guide for Japan prioritizing the Army focus tree and continental expansion over naval doctrine
+```
+
+The custom GPT will automatically generate properly structured JSON following the established schema, which can then be processed through this repository's automation pipeline to create formatted guides and checklists.
+
+## Automation Workflow
+
+The repository uses a 3-step automation pipeline:
+
+1. **Character Cleaning** (`fix_json_characters.py`) - Fixes encoding issues in JSON files
+2. **Guide Generation** (`json_to_markdown.py`) - Converts JSON to formatted markdown
+3. **Checklist Creation** (`json_to_checklist.py`) - Generates actionable checklists
+
+### CI/CD Pipeline
+
+GitHub Actions automatically processes files when JSON guides are added to the `data/` directory:
+- Validates JSON structure against schema
+- Generates markdown guides
+- Creates corresponding checklists
+- Commits results to repository
 
 ## Repository Structure
 
 This repository is organized into a clear directory structure that supports both manual and automated content generation:
 
 ```
-/
-├── data/                           # Input JSON files
-│   └── *.json                      # Strategy guide data files
-├── guides/                         # Generated Markdown guides  
-│   └── *.md                        # Human-readable strategy guides
-├── checklists/                     # Generated actionable checklists
-│   └── *-checklist.md              # Interactive gameplay checklists
-├── .github/                        # Automation infrastructure
-│   ├── scripts/                    # Python conversion scripts
-│   │   ├── fix_json_characters.py  # JSON character cleaning
-│   │   ├── json_to_markdown.py     # Guide generation
-│   │   ├── json_to_checklist.py    # Checklist creation
-│   │   └── README.md               # Script documentation
-│   └── workflows/                  # GitHub Actions automation
-│       └── convert-json-guides.yml # Main conversion workflow
-├── WORKFLOW.md                     # Automation workflow guide
-├── schema.json                     # JSON format specification
-└── README.md                       # This file
+HOI4-Strategy/
+├── .github/
+│   ├── workflows/                 # CI/CD automation
+│   └── scripts/                   # Processing utilities
+│       ├── fix_json_characters.py
+│       ├── json_to_markdown.py
+│       └── json_to_checklist.py
+├── checklists/                    # Generated checklist outputs
+├── guides/                        # Generated guide outputs  
+├── data/                          # Input JSON files
+├── schema.json                    # JSON schema validation
+├── guide.md                       # Example output
+├── argentina_fascist_1.17.md     # Example country guide
+├── WORKFLOW.md                    # Detailed automation guide
+└── README.md                      # This file
 ```
 
-### Directory Explanations
+## Getting Started
 
-#### `/data/` - Source Files
-The heart of the content creation system. Place your strategy guide JSON files here to trigger automatic processing. Files must follow the established JSON schema (see `schema.json`).
+1. Clone this repository
+2. Add JSON strategy files to the `data/` directory
+3. Run the automation scripts or push to trigger CI/CD
+4. Find generated guides in `guides/` and checklists in `checklists/`
 
-**Example**: `argentina_fascist.json` → Triggers automatic generation of guide and checklist
-
-#### `/guides/` - Generated Strategy Guides  
-Auto-generated, human-readable Markdown guides optimized for reading and reference. These include:
-- Clean formatting with proper tables and sections
-- Cross-links to corresponding checklists
-- Tier-based organization and metadata
-- Special handling for complex sections (Air & Navy, Factory swaps, etc.)
-
-#### `/checklists/` - Interactive Gameplay Checklists
-Auto-generated actionable checklists optimized for in-game use. Features include:
-- Interactive checkboxes for progress tracking
-- Simplified, action-oriented formatting  
-- Cross-links back to full strategy guides
-- Special handling for complex timelines
-
-#### `/.github/` - Automation Infrastructure
-Contains all the automation scripts and workflows that power the conversion system:
-- **Scripts**: Python tools for JSON cleaning, guide generation, and checklist creation
-- **Workflows**: GitHub Actions that automatically process new JSON files
-
-### How It Works
-
-1. **Add JSON File**: Place a strategy guide JSON file in `/data/`
-2. **Automatic Processing**: GitHub Actions automatically:
-   - Cleans problematic Unicode characters from the JSON
-   - Generates a readable Markdown guide in `/guides/`
-   - Creates an interactive checklist in `/checklists/`
-   - Cross-links both files for easy navigation
-3. **Ready to Use**: Both the guide and checklist are automatically committed back to the repository
-
-For detailed workflow information, see [WORKFLOW.md](WORKFLOW.md).
+The automation tools ensure consistent formatting and quality across all generated strategy documentation.
 
 
 
@@ -98,4 +112,4 @@ Feel free to add new guides or improve existing ones by creating new `.json` fil
 3. **Submit Pull Request**: The automation will handle generating the Markdown guide and checklist
 4. **Review Process**: Guides will be play-tested before acceptance
 
-**NOTE**: Pull Requests are welcome but will only be accepted after an in-game play testing, and since I dont have time to play video games all day every day this will be done on an ad-hoc first-come-first-serve basis. However if you wish to make use of the custom GPT to generate guides and then use the automation from this repo to produce a gameplay checklist then you may fork as you please.
+**NOTE**: Pull Requests are welcome but will only be accepted after an in-game play testing, and since I dont have time to play video games all day every day this will be done on an ad-hoc first-come-first-serve basis. However if you wish to make use of the custom GPT to generate guides and then use the automation from this repo to produce a gameplay checklist then you may clone this repo as you please.
