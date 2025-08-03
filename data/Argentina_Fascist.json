@@ -1,0 +1,200 @@
+{
+ "meta": {
+    "country": "Argentina",
+    "path": "Fascist – Work with Nationalists → Dominate the South → The Old Enemy",
+    "patch": "1.17",
+    "dlc": ["TfV","DoD","WTT","MtG","LaR","BfB","NSB","BBA","AAT"],
+    "created_on": "2025-07-25",
+    "tier_definitions": {
+      "1": "Core win / mandatory",
+      "2": "Optional extension",
+      "3": "Late‑game / global"
+    }
+  },
+  "sections": {
+    "day_one_snapshot": {
+      "summary": "Fast fascist rush to unite South America and seize the Falklands with mid‑game radar net.",
+      "oob": {
+        "divisions": 10,
+        "ships": 19,
+        "planes": 30,
+        "civ_factories": 7,
+        "mil_factories": 4,
+        "dockyards": 1,
+        "research_slots": 3
+      }
+    },
+    "national_focus_timeline": [
+      {"start":"1936-01-01","end":"1936-03-11","days":70,"focus":"Roberto María Ortiz","prereqs":null,"tier":1,"why":"unlock nationalist branch (shared prerequisite)"},
+      {"start":"1936-03-11","end":"1936-04-25","days":35,"focus":"Work with the Nationalists","prereqs":"Roberto María Ortiz","tier":1,"why":"enable fascist drift"},
+      {"start":"1936-04-25","end":"1936-06-09","days":35,"focus":"Crackdown on Corruption","prereqs":"Work with the Nationalists OR Defense & Democracy","tier":2,"why":"+Stability / Prod Cap"},
+      {"start":"1936-06-09","end":"1936-07-13","days":35,"focus":"Cut Ties with Britain","prereqs":"Work with the Nationalists","tier":1,"why":"remove beef treaty"},
+      {"start":"1936-07-13","end":"1936-08-17","days":35,"focus":"Support Radical Nationalism","prereqs":"Cut Ties with Britain","tier":1,"why":"+0.2 fascism drift"},
+      {"start":"1936-08-17","end":"1936-09-21","days":35,"focus":"Corporatism","prereqs":"Support Radical Nationalism","tier":1,"why":"+2 MIL in BA"},
+      {"start":"1936-09-21","end":"1936-10-26","days":35,"focus":"Re‑establish Ligas Patrióticas","prereqs":"Corporatism","tier":1,"why":"spawns 5 militia (shared)"},
+      {"start":"1936-10-26","end":"1936-11-30","days":35,"focus":"Fascist Researchers","prereqs":"Re‑establish Ligas Patrióticas","tier":2,"why":"4th research slot"},
+      {"start":"1936-11-30","end":"1937-02-03","days":70,"focus":"War Division","prereqs":"Corporatism","tier":1,"why":"weekly manpower / war prep"},
+      {"start":"1937-02-03","end":"1937-04-10","days":35,"focus":"Dominate the South","prereqs":"War Division","tier":1,"why":"enable ultimatums"},
+      {"start":"1937-04-10","end":"1937-05-15","days":35,"focus":"Preparations for War","prereqs":"Dominate the South","tier":1,"why":"free rails & hubs"},
+      {"start":"1937-05-15","end":"1937-06-19","days":35,"focus":"Paraguay Ultimatum","prereqs":"Dominate the South","tier":1,"why":"wargoal Paraguay"},
+      {"start":"1937-06-19","end":"1937-07-24","days":35,"focus":"Uruguay Ultimatum","prereqs":"Dominate the South","tier":1,"why":"wargoal Uruguay"},
+      {"start":"1937-07-24","end":"1937-08-28","days":35,"focus":"Chile Ultimatum","prereqs":"Dominate the South","tier":1,"why":"wargoal Chile"},
+      {"start":"1937-08-28","end":"1937-10-07","days":40,"focus":"— idle gap —","prereqs":null,"tier":1,"why":"no suitable 35‑day focus; keep stability ticking"},
+      {"start":"1937-10-07","end":"1937-12-16","days":70,"focus":"Expand Steel Extraction","prereqs":"Invest in Roads & Railways","tier":2,"why":"+8 steel"},
+      {"start":"1937-12-16","end":"1938-02-24","days":70,"focus":"Expand Aluminium Extraction","prereqs":"Invest in Roads & Railways","tier":2,"why":"+16 aluminium"},
+      {"start":"1938-02-24","end":"1938-05-05","days":70,"focus":"The Old Enemy","prereqs":"any Ultimatum","tier":1,"why":"conquer Brazil"}
+    ],
+    "government_laws_officers_mios_theorists": [
+      {"date":"1936-01-05","pick":"Early Mobilisation (economy law)","tier":1,"why":"speed MIL build"},
+      {"date":"1936-01-10","pick":"Advisor Calderón – Fascist Drift","tier":1,"why":"faster ideology flip"},
+      {"date":"1936-02-01","pick":"Mil High Cmd Baldrich – Infantry","tier":1,"why":"+Inf Atk/Def"},
+      {"date":"1936-03-01","pick":"Chief of Army Justo – Offensive","tier":1,"why":"+division attack"},
+      {"date":"1936-03-15","pick":"Officer Spirit – Professional Officer Corps","tier":1,"why":"+20 org"},
+      {"date":"1936-06-01","pick":"Military Spirit – Corps of Engineers","tier":1,"why":"entrench speed"},
+      {"date":"1936-06-15","pick":"MIO FM Munitions","tier":1,"why":"cheaper gun upgrades"},
+      {"date":"1936-09-15","pick":"Theorist – Blitzkrieg","tier":2,"why":"armor XP"},
+      {"date":"1937-01-05","pick":"War Economy","tier":1,"why":"max builds"},
+      {"date":"1938-07-01","pick":"MIO Ferrocarriles Argentinos","tier":2,"why":"cheap rail hubs"}
+    ],
+    "research_timeline": [
+      {"start":"1936-01-01","finish":"1936-04-01","slot":1,"tech":"Basic Machine Tools","tier":1,"why":"industry baseline"},
+      {"start":"1936-01-01","finish":"1936-06-01","slot":2,"tech":"Electrical Engineering","tier":1,"why":"radar prereq"},
+      {"start":"1936-01-01","finish":"1936-05-01","slot":3,"tech":"Construction I","tier":1,"why":"faster civs"},
+      {"start":"1936-01-01","finish":"1936-03-01","slot":4,"tech":"Infantry Equipment I","tier":1,"why":"unlock production"},
+      {"start":"1936-04-01","finish":"1936-08-01","slot":1,"tech":"Improved Machine Tools","tier":1,"why":"+prod cap"},
+      {"start":"1936-06-01","finish":"1936-09-01","slot":2,"tech":"Radio","tier":1,"why":"org/def bonus"},
+      {"start":"1936-07-01","finish":"1936-11-01","slot":3,"tech":"Construction II","tier":1,"why":"build speed"},
+      {"start":"1936-08-01","finish":"1936-10-01","slot":4,"tech":"Support Equipment I","tier":1,"why":"engineers"},
+      {"start":"1936-11-01","finish":"1937-03-01","slot":1,"tech":"Basic Guns II","tier":1,"why":"firepower"},
+      {"start":"1936-11-01","finish":"1937-02-01","slot":2,"tech":"Computing Machine","tier":2,"why":"+4 % RS"},
+      {"start":"1936-12-01","finish":"1937-04-01","slot":3,"tech":"Artillery I","tier":1,"why":"7‑2 template"},
+      {"start":"1936-12-01","finish":"1937-04-01","slot":4,"tech":"Light Tank I","tier":2,"why":"flame chassis"},
+      {"start":"1937-04-01","finish":"1937-08-01","slot":3,"tech":"Motorized","tier":1,"why":"mot divisions"},
+      {"start":"1937-04-01","finish":"1937-08-01","slot":4,"tech":"Tank Engine I + Armor I","tier":2,"why":"reliability"},
+      {"start":"1937-06-01","finish":"1937-10-01","slot":1,"tech":"Improved Infantry Eq II","tier":2,"why":"mid‑game firepower"},
+      {"start":"1937-07-01","finish":"1937-11-01","slot":2,"tech":"Grand Battleplan – Dispersed Vet.","tier":1,"why":"org / soft atk"},
+      {"start":"1937-09-01","finish":"1938-01-01","slot":3,"tech":"Interwar Fighter","tier":2,"why":"air cover"},
+      {"start":"1937-10-01","finish":"1938-02-01","slot":4,"tech":"Interwar CAS","tier":2,"why":"ground support"},
+      {"start":"1938-01-01","finish":"1938-05-01","slot":1,"tech":"Tactical Bomber I","tier":2,"why":"logistics strikes"},
+      {"start":"1938-03-01","finish":"1938-07-01","slot":2,"tech":"Radar I","tier":2,"why":"unlock project"}
+    ],
+    "construction_timeline": [
+      {"start_end":"1936-01-01 – 1936-05-01","queue":"3× Civ","states":"Buenos Aires, Córdoba, Santa Fe","tier":1,"why":"early CIC snowball"},
+      {"start_end":"1936-05-01 – 1936-08-01","queue":"2× Civ","states":"Santa Fe, San Luis","tier":1,"why":"reach 12 CIC"},
+      {"start_end":"1936-08-01 – 1936-11-01","queue":"3× MIL","states":"Buenos Aires, Santa Fe","tier":1,"why":"slot Corporatism MILs"},
+      {"start_end":"1936-12-01 – 1937-02-15","queue":"1× MIL","states":"Buenos Aires","tier":1,"why":"extra guns"},
+      {"start_end":"1937-03-01 – 1938-04-01","queue":"MIL spam to 22","states":"BA → SF → Córdoba → San Luis","tier":1,"why":"Brazil prep"},
+      {"start_end":"1938-05-15 – 1938-06-30","queue":"Focus rails","states":"Formosa & Patagonia","tier":1,"why":"free supply"},
+      {"start_end":"1938-07-01 – 1938-12-31","queue":"Infra 5","states":"Mato Grosso & Pará","tier":2,"why":"Brazil supply"},
+      {"start_end":"1939-01-01 – 1939-12-31","queue":"4× Dock","states":"Tierra del Fuego","tier":3,"why":"fleet build"},
+      {"start_end":"1940-01-01 – 1940-06-30","queue":"Radar III","states":"Tierra del Fuego, Falklands","tier":2,"why":"AA net"}
+    ],
+    "factory_swap_ladder": [
+      {"date":"1936-01-02","take_from":null,"give_to":"4 MIL → Guns","tier":1,"why":"clear backlog"},
+      {"date":"1936-08-15","take_from":"1 MIL Guns","give_to":"1 MIL Artillery","tier":1,"why":"support lines"},
+      {"date":"1937-01-10","take_from":"1 MIL Guns","give_to":"1 MIL Trucks","tier":1,"why":"motor pool"},
+      {"date":"1937-02-15","take_from":"1 MIL Guns","give_to":"1 MIL Support Eq","tier":1,"why":"ENG/Recon"},
+      {"date":"1937-08-15","take_from":"2 Civ‑converted MIL","give_to":"2 MIL Guns","tier":1,"why":"Brazil push"},
+      {"date":"1937-12-20","take_from":"1 MIL Guns","give_to":"1 MIL Light Tank","tier":2,"why":"flame platoons"},
+      {"date":"1938-05-01","take_from":"2 MIL Guns","give_to":"2 MIL CAS I","tier":2,"why":"ground support"},
+      {"date":"1938-10-01","take_from":"2 MIL Guns","give_to":"2 MIL TAC I","tier":2,"why":"logistics strike"},
+      {"date":"1939-01-15","take_from":"4 MIL Guns","give_to":"4 MIL Fighter I","tier":2,"why":"air parity"},
+      {"date":"1939-04-01","take_from":"— (cancel steel import)","give_to":null,"tier":2,"why":"own steel mines"}
+    ],
+    "army_grouping_command": [
+      {"date":"1936-01-01","group":"Army 1","divisions":"12 Inf","commander":"FM Justo","tier":1,"why":"only FM with traits"},
+      {"date":"1936-05-01","group":"Army 2","divisions":"5 Cav","commander":"Baldrich","tier":1,"why":"fast Paraguay encirclement"},
+      {"date":"1936-07-01","group":"Army Group A","divisions":"Armies 1‑2","commander":"Justo (FM)","tier":1,"why":"multi‑front"},
+      {"date":"1936-09-01","group":"Rear Garrisons","divisions":"5 Ligas","commander":"—","tier":1,"why":"free militia"},
+      {"date":"1937-01-15","group":"Army 3","divisions":"6 Mot","commander":"Baldrich (promoted)","tier":1,"why":"Bolivia spearhead"},
+      {"date":"1938-02-20","group":"Army 4","divisions":"6 Inf (7‑2)","commander":"Mosconi","tier":1,"why":"north Brazil line"},
+      {"date":"1940-01-05","group":"Army 5","divisions":"2 Flame Lt + 6 Inf","commander":"Baldrich","tier":2,"why":"Falklands assault"}
+    ],
+    "division_templates_recruit_plan": [
+      {"date":"1936-01-01","action":"convert","qty":9,"template":"9‑Inf 1‑Art (line)","tier":1,"why":"starter backbone"},
+      {"date":"1936-06-01","action":"add","qty":5,"template":"7‑Inf 2‑Art (line)","tier":1,"why":"balance punch"},
+      {"date":"1936-09-01","action":"train","qty":6,"template":"6‑Mot","tier":1,"why":"fast envelopment"},
+      {"date":"1937-01-10","action":"train","qty":12,"template":"7‑Inf 2‑Art","tier":1,"why":"Brazil war prep"},
+      {"date":"1937-07-20","action":"design","qty":2,"template":"Light Flame Tank platoon","tier":2,"why":"jungle assaults"}
+    ],
+    "equipment_designs": [
+      {"date":"1936-03-01","unit":"Infantry Eq I","modules":"+Reliability","tier":1,"why":"fewer losses"},
+      {"date":"1936-08-01","unit":"Support Eq I","modules":"standard","tier":1,"why":"ENG slot"},
+      {"date":"1936-10-01","unit":"Artillery I","modules":"+Soft Attack","tier":1,"why":"template DPS"},
+      {"date":"1937-01-15","unit":"Motorized","modules":"+Reliability","tier":1,"why":"convoy safety"},
+      {"date":"1937-07-20","unit":"Light Tank I","modules":"Flame Turret + Engine I","tier":2,"why":"flame support"},
+      {"date":"1938-01-15","unit":"Fighter I","modules":"+Weapons II + Fuel Tank","tier":2,"why":"air parity"},
+      {"date":"1938-05-15","unit":"CAS I","modules":"+Bomb Racks + Self‑Seal Tanks","tier":2,"why":"close air"},
+      {"date":"1938-10-15","unit":"Tactical Bomber I","modules":"+Defensive MG + LR Fuel Tank","tier":2,"why":"logistics strike"},
+      {"date":"1938-12-15","unit":"Submarine II","modules":"Snorkel + Torpedo III","tier":3,"why":"convoy raiding"},
+      {"date":"1939-06-01","unit":"Radar Station III","modules":"—","tier":2,"why":"Falklands AA net"}
+    ],
+    "air_snapshot": [
+      {"type":"Fighter I","qty":120,"base":"Buenos Aires","mission":"Air Sup","tier":1,"why":"defend capital"},
+      {"type":"CAS I","qty":80,"base":"Córdoba","mission":"Ground Attack","tier":1,"why":"Paraguay/Brazil fronts"},
+      {"type":"Tactical Bomber I","qty":48,"base":"Santa Fe","mission":"Logistics Strike","tier":2,"why":"Brazil supply"}
+    ],
+    "navy_snapshot": [
+      {"type":"DD I","qty":9,"base":"Buenos Aires","mission":"Convoy Escort","tier":1,"why":"protect trade"},
+      {"type":"CL I","qty":2,"base":"Buenos Aires","mission":"Screen","tier":1,"why":"anti‑sub"},
+      {"type":"CA I","qty":3,"base":"Buenos Aires","mission":"Strike Force","tier":2,"why":"shore bombard"},
+      {"type":"BB I","qty":2,"base":"Buenos Aires","mission":"Strike Force","tier":2,"why":"port strike"},
+      {"type":"SS I","qty":3,"base":"Buenos Aires","mission":"Convoy Raid","tier":2,"why":"hit UK shipping"}
+    ],
+    "garrisons_occupation_laws": [
+      {"phase":"PAR/URU/CHL","law":"Civilian Oversight","template":"6 Inf","tier":1,"why":"low resistance"},
+      {"phase":"Brazil core","law":"Local Police Force","template":"6 Inf + MP I","tier":1,"why":"balance compliance"},
+      {"phase":"Spike","law":"Secret Police","template":"same","tier":1,"why":"crush spikes"},
+      {"phase":"Caribbean/USA","law":"Martial → Military Gov.","template":"6 Inf + MP II","tier":3,"why":"high suppression"}
+    ],
+    "spy_missions_timeline": [
+      {"date":"1936-04-01","action":"Create agency","tier":1,"why":"unlock ops"},
+      {"date":"1936-06-15","action":"Upgrade Counter‑Intel","tier":1,"why":"defend"},
+      {"date":"1936-09-01","action":"Recruit operative #2","tier":1,"why":"network speed"},
+      {"date":"1936-12-01","action":"Intel network Paraguay","tier":1,"why":"combat bonus"},
+      {"date":"1937-03-01","action":"Passive defense Brazil","tier":1,"why":"spy war"},
+      {"date":"1938-01-10","action":"Collab Gov op Brazil","tier":2,"why":"faster cap"}
+    ],
+    "war_playbook": [
+      {"war":"Paraguay","timing":"1937-05-15","opening_move":"Mot encircle Asunción","key_kit":"6 Mot","problem":"jungle river","tier":1},
+      {"war":"Uruguay","timing":"1937-07-24","opening_move":"Pin border, surround Montevideo","key_kit":"5 Cav","problem":"river","tier":1},
+      {"war":"Chile","timing":"1937-11-15","opening_move":"Pin north, flank via Andes gaps","key_kit":"12 Inf","problem":"mountains","tier":1},
+      {"war":"Brazil","timing":"1938-05-05","opening_move":"Inf hold south, Mot swing Mato Grosso","key_kit":"24 Inf / 6 Mot","problem":"wide front","tier":1},
+      {"war":"Falklands","timing":"1940-01-10","opening_move":"Naval bombard + flame‑tank landing","key_kit":"2 Flame Lt","problem":"UK fleet","tier":2},
+      {"war":"USA","timing":"1941-07-01","opening_move":"Convoy raid & jungle defense","key_kit":"Radar net + subs","problem":"industry gap","tier":3}
+    ],
+    "final_logistics_targets": [
+      {"item":"Guns II","qty":90000,"tier":1,"why":"re‑equip"},
+      {"item":"Artillery I","qty":3000,"tier":1,"why":"line punch"},
+      {"item":"Trucks","qty":1500,"tier":1,"why":"mot support"},
+      {"item":"Support Eq","qty":1200,"tier":1,"why":"companies"},
+      {"item":"Flame Lt","qty":120,"tier":2,"why":"assaults"},
+      {"item":"Fighter I","qty":300,"tier":2,"why":"air cover"},
+      {"item":"CAS I","qty":240,"tier":2,"why":"ground attack"},
+      {"item":"TAC I","qty":144,"tier":2,"why":"logistics strike"},
+      {"item":"Radar III sites","qty":2,"tier":2,"why":"AA net"}
+    ],
+    "doctrines_xp_budget": [
+      {"date":"1937-01-15","branch":"Grand Battleplan","node":"Preparation","xp_cost":100,"tier":1,"why":"entrench"},
+      {"date":"1937-04-15","branch":"Grand Battleplan","node":"Massed Firepower","xp_cost":100,"tier":1,"why":"soft atk"},
+      {"date":"1937-10-15","branch":"Grand Battleplan","node":"Infiltration in Depth","xp_cost":100,"tier":1,"why":"night tactics"},
+      { "date": "1938-03-15", "branch": "Operational Integrity (Air)", "node": "Fighter Escort",      "xp_cost": 100, "tier": 2, "why": "protect CAS over dense jungle :contentReference[oaicite:0]{index=0}" },
+      { "date": "1938-06-15", "branch": "Operational Integrity (Air)", "node": "CAS Pilot Training",  "xp_cost": 100, "tier": 2, "why": "higher CAS efficiency for Brazil drive :contentReference[oaicite:1]{index=1}" },
+      { "date": "1939-02-01", "branch": "Trade Interdiction (Naval)",  "node": "Wolfpacks",            "xp_cost": 100, "tier": 2, "why": "sub hunting groups vs UK convoys :contentReference[oaicite:2]{index=2}" },
+      { "date": "1939-05-01", "branch": "Trade Interdiction (Naval)",  "node": "Advanced Sub Ops",     "xp_cost": 100, "tier": 2, "why": "convoy‑raiding bonus for Falklands campaign :contentReference[oaicite:3]{index=3}" }
+  ],
+    "victory_ladder": [
+      {"tier":1,"condition":"Own PAR, URU, CHL, BRA","reward":"South‑American hegemony"},
+      {"tier":2,"condition":"Annex Falklands & cut UK trade","reward":"regional dominance"},
+      {"tier":3,"condition":"Defeat USA & Allies","reward":"hemisphere hegemon"}
+    ],
+    "special_projects": {
+      "used": true,
+      "steps": [
+        {"date":"1938-07-15","project":"Radar I station Tierra del Fuego","cost":"3 MIL / 2 Alu","tier":2,"why":"cover Brazil coast"},
+        {"date":"1939-01-01","project":"Upgrade to Radar II","cost":"+3 MIL","tier":2,"why":"detect UK fleet"},
+        {"date":"1939-06-01","project":"Build Radar III Falklands","cost":"3 MIL","tier":2,"why":"AA net for invasion"}
+      ]
+    }
+  }
+}
