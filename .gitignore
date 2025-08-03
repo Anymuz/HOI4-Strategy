@@ -15,6 +15,10 @@ vscode-custom.css
 *.swo
 *~
 
+# Workflow test - hide the json from the commit then quickly restore it
+data/Argentina_Fascist.json
+
+
 # custom folder for checlist usage
 user/
 

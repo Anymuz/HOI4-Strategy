@@ -44,10 +44,10 @@ def convert_new_format_to_markdown(json_data: Dict[str, Any], checklist_filename
         ])
 
     # Tier definitions
-    if "tiers" in meta:
+    if "tier_definitions" in meta:
         tier_text = "*Tiers:* "
         tier_parts = []
-        for tier, definition in meta["tiers"].items():
+        for tier, definition in meta["tier_definitions"].items():
             tier_parts.append(f"**{tier} = {definition}**")
         tier_text += " • ".join(tier_parts)
         markdown_lines.append(tier_text)
@@ -56,64 +56,136 @@ def convert_new_format_to_markdown(json_data: Dict[str, Any], checklist_filename
     markdown_lines.extend(["---", ""])
 
     # Process sections
-    sections = json_data.get("sections", [])
+    sections = json_data.get("sections", {})
     logging.debug(f"Sections extracted: {sections}")
 
-    for section in sections:
-        section_id = section.get("id", "Unknown ID")
-        section_name = section.get("name", "Unknown Section")
-        markdown_lines.append(f"## {section_id}. {section_name}")
-        markdown_lines.append("")
-
-        # Handle special Air & Navy snapshot section
-        if "air" in section and "navy" in section:
-            # Air subsection
-            markdown_lines.append("### Air Plan")
+    # Handle both old format (list) and new format (dict)
+    if isinstance(sections, list):
+        # Old format: sections is a list of section objects
+        for section in sections:
+            section_id = section.get("id", "Unknown ID")
+            section_name = section.get("name", "Unknown Section")
+            markdown_lines.append(f"## {section_id}. {section_name}")
             markdown_lines.append("")
-            air_header = "| " + " | ".join(section["air"]["columns"]) + " |"
-            air_separator = "| " + " | ".join(["----"] * len(section["air"]["columns"])) + " |"
-            markdown_lines.extend([air_header, air_separator])
-            
-            for row in section["air"]["rows"]:
-                formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
-                markdown_lines.append(formatted_row)
-            
-            markdown_lines.append("")
-            
-            # Navy subsection
-            markdown_lines.append("### Navy Plan")
-            markdown_lines.append("")
-            navy_header = "| " + " | ".join(section["navy"]["columns"]) + " |"
-            navy_separator = "| " + " | ".join(["----"] * len(section["navy"]["columns"])) + " |"
-            markdown_lines.extend([navy_header, navy_separator])
-            
-            for row in section["navy"]["rows"]:
-                formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
-                markdown_lines.append(formatted_row)
-            
-            markdown_lines.append("")
-        
-        # Regular table if columns and rows are present
-        elif "columns" in section and "rows" in section:
-            header = "| " + " | ".join(section["columns"]) + " |"
-            separator = "| " + " | ".join(["----"] * len(section["columns"])) + " |"
-            markdown_lines.extend([header, separator])
-
-            for row in section["rows"]:
-                formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
-                markdown_lines.append(formatted_row)
-
-            markdown_lines.append("")
-
-        # Add notes below the table(s)
-        if "notes" in section and section["notes"]:
-            markdown_lines.append("### Notes")
-            for note in section["notes"]:
-                markdown_lines.append(f"- {note}")
-            markdown_lines.append("")
+            process_section_content(section, markdown_lines)
+    else:
+        # New format: sections is a dict with section names as keys
+        for section_key, section_data in sections.items():
+            if section_key == "day_one_snapshot":
+                snapshot_md = convert_day_one_snapshot_to_markdown(section_data)
+                markdown_lines.extend(snapshot_md.split('\n'))
+                markdown_lines.append("")
+            elif section_key == "national_focus_timeline":
+                focus_md = convert_focus_timeline_to_markdown(section_data)
+                markdown_lines.extend(focus_md.split('\n'))
+                markdown_lines.append("")
+            else:
+                # Generic section processing
+                section_title = section_key.replace("_", " ").title()
+                markdown_lines.append(f"## {section_title}")
+                markdown_lines.append("")
+                
+                if isinstance(section_data, list):
+                    # Convert list to table format
+                    if section_data:
+                        # Try to create a table from the list items
+                        first_item = section_data[0]
+                        if isinstance(first_item, dict):
+                            # Create table from dict keys
+                            columns = list(first_item.keys())
+                            header = "| " + " | ".join(columns) + " |"
+                            separator = "| " + " | ".join(["----"] * len(columns)) + " |"
+                            markdown_lines.extend([header, separator])
+                            
+                            for item in section_data:
+                                row_values = [str(item.get(col, "—")) for col in columns]
+                                formatted_row = "| " + " | ".join(row_values) + " |"
+                                markdown_lines.append(formatted_row)
+                        else:
+                            # Simple list
+                            for item in section_data:
+                                markdown_lines.append(f"- {item}")
+                elif isinstance(section_data, dict):
+                    # Handle nested data like air/navy snapshots
+                    for key, value in section_data.items():
+                        if isinstance(value, list):
+                            markdown_lines.append(f"### {key.replace('_', ' ').title()}")
+                            markdown_lines.append("")
+                            for item in value:
+                                if isinstance(item, dict):
+                                    # Convert dict to readable format
+                                    for k, v in item.items():
+                                        markdown_lines.append(f"- **{k}**: {v}")
+                                else:
+                                    markdown_lines.append(f"- {item}")
+                            markdown_lines.append("")
+                        elif isinstance(value, dict):
+                            markdown_lines.append(f"### {key.replace('_', ' ').title()}")
+                            markdown_lines.append("")
+                            for k, v in value.items():
+                                markdown_lines.append(f"- **{k}**: {v}")
+                            markdown_lines.append("")
+                        else:
+                            markdown_lines.append(f"**{key.replace('_', ' ').title()}**: {value}")
+                    markdown_lines.append("")
+                else:
+                    # Simple value
+                    markdown_lines.append(str(section_data))
+                    markdown_lines.append("")
 
     logging.debug("Finished conversion of JSON to Markdown.")
     return "\n".join(markdown_lines)
+
+
+def process_section_content(section, markdown_lines):
+    """Process the content of a section for the old format."""
+    # Handle special Air & Navy snapshot section
+    if "air" in section and "navy" in section:
+        # Air subsection
+        markdown_lines.append("### Air Plan")
+        markdown_lines.append("")
+        air_header = "| " + " | ".join(section["air"]["columns"]) + " |"
+        air_separator = "| " + " | ".join(["----"] * len(section["air"]["columns"])) + " |"
+        markdown_lines.extend([air_header, air_separator])
+        
+        for row in section["air"]["rows"]:
+            formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
+            markdown_lines.append(formatted_row)
+        
+        markdown_lines.append("")
+        
+        # Navy subsection
+        markdown_lines.append("### Navy Plan")
+        markdown_lines.append("")
+        navy_header = "| " + " | ".join(section["navy"]["columns"]) + " |"
+        navy_separator = "| " + " | ".join(["----"] * len(section["navy"]["columns"])) + " |"
+        markdown_lines.extend([navy_header, navy_separator])
+        
+        for row in section["navy"]["rows"]:
+            formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
+            markdown_lines.append(formatted_row)
+        
+        markdown_lines.append("")
+    
+    # Regular table if columns and rows are present
+    elif "columns" in section and "rows" in section:
+        header = "| " + " | ".join(section["columns"]) + " |"
+        separator = "| " + " | ".join(["----"] * len(section["columns"])) + " |"
+        markdown_lines.extend([header, separator])
+
+        for row in section["rows"]:
+            formatted_row = "| " + " | ".join(str(item) if item else "—" for item in row) + " |"
+            markdown_lines.append(formatted_row)
+
+        markdown_lines.append("")
+
+    # Add notes below the table(s)
+    if "notes" in section and section["notes"]:
+        markdown_lines.append("### Notes")
+        for note in section["notes"]:
+            markdown_lines.append(f"- {note}")
+        markdown_lines.append("")
+
 
 def convert_day_one_snapshot_to_markdown(snapshot: Dict[str, Any]) -> str:
     """Convert day one snapshot to markdown."""
@@ -146,7 +218,7 @@ def convert_day_one_snapshot_to_markdown(snapshot: Dict[str, Any]) -> str:
 
     return "\n".join(markdown_lines)
 
-def convert_focus_timeline_to_markdown(focuses: Dict[str, Any]) -> str:
+def convert_focus_timeline_to_markdown(focuses: list) -> str:
     """Convert focus timeline to markdown table."""
     markdown_lines = ["## 1. National Focus Timeline"]
     markdown_lines.append("")

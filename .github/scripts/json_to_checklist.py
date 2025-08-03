@@ -8,181 +8,127 @@ import json
 import os
 from typing import Dict, Any, List
 
-def convert_section_to_checklist(section: Dict[str, Any], guide_filename: str = None) -> str:
+def convert_section_to_checklist(section_key: str, section_data: Dict[str, Any], guide_filename: str = None) -> str:
     """Convert a single section to checklist format."""
-    section_id = section.get("id", "")
-    section_name = section.get("name", "Unknown Section")
-    
-    # Format section header
-    if section_id != "":
-        header = f"## {section_id}. {section_name}"
+    # Format section header based on section key
+    if section_key == "day_one_snapshot":
+        header = "## 0. Day-One Snapshot"
+    elif section_key == "national_focus_timeline":
+        header = "## 1. National Focus Timeline"
     else:
-        header = f"## {section_name}"
+        section_title = section_key.replace("_", " ").title()
+        header = f"## {section_title}"
     
     checklist_lines = [header, ""]
     
-    # Special handling for Section 5 (Factory-swap ladder)
-    if section_id == 5 or "factory-swap" in section_name.lower():
-        # Add reference to main guide
-        if guide_filename:
+    # Special handling for different section types
+    if section_key == "day_one_snapshot":
+        if "summary" in section_data:
             checklist_lines.extend([
-                f"*For full factory allocation details, see the [main strategy guide](../guides/{guide_filename}#5-factory-swap-ladder)*",
-                ""
-            ])
-        else:
-            checklist_lines.extend([
-                "*For full factory allocation details, see the main strategy guide*",
+                f"**Summary:** {section_data['summary']}",
                 ""
             ])
         
-        # Only show changes for Factory-swap ladder
-        if "columns" in section and "rows" in section:
-            columns = section["columns"]
-            
-            # Find specific columns we want
-            date_col_idx = None
-            take_give_idx = None
-            dockyards_idx = None
-            why_idx = None
-            
-            for i, col in enumerate(columns):
-                if col.lower() in ["date"]:
-                    date_col_idx = i
-                elif "take_from_give_to" in col.lower():
-                    take_give_idx = i
-                elif "dockyards" in col.lower():
-                    dockyards_idx = i
-                elif col.lower() in ["why"]:
-                    why_idx = i
-            
-            # Process each row showing only changes
-            for row in section["rows"]:
-                if not row:  # Skip empty rows
-                    continue
-                
-                # Get date
-                date_info = ""
-                if date_col_idx is not None and date_col_idx < len(row):
-                    date_value = row[date_col_idx]
-                    if date_value and str(date_value).strip() != "-":
-                        date_info = str(date_value)
-                
-                # Build action from specific columns only
-                action_parts = []
-                
-                # Take from / Give to changes
-                if take_give_idx is not None and take_give_idx < len(row):
-                    take_give = row[take_give_idx]
-                    if take_give and str(take_give).strip() not in ["-", "0", ""]:
-                        action_parts.append(f"Factory Change: {take_give}")
-                
-                # Dockyards
-                if dockyards_idx is not None and dockyards_idx < len(row):
-                    dockyards = row[dockyards_idx]
-                    if dockyards and str(dockyards).strip() != "-":
-                        action_parts.append(f"Dockyards: {dockyards}")
-                
-                # Why
-                if why_idx is not None and why_idx < len(row):
-                    why = row[why_idx]
-                    if why and str(why).strip() != "-":
-                        action_parts.append(f"({why})")
-                
-                # Create checklist item only if there are meaningful changes
-                if action_parts:
-                    action_text = " - ".join(action_parts)
-                    if date_info:
-                        checklist_item = f"- [ ] **{date_info}**: {action_text}"
-                    else:
-                        checklist_item = f"- [ ] {action_text}"
-                    checklist_lines.append(checklist_item)
-        
-        # Add notes if present
-        if "notes" in section and section["notes"]:
-            checklist_lines.extend(["", "### Notes"])
-            for note in section["notes"]:
-                checklist_lines.append(f"- {note}")
-        
-        return "\n".join(checklist_lines)
+        if "oob" in section_data:
+            checklist_lines.extend([
+                "**Starting Order of Battle:**",
+                ""
+            ])
+            oob = section_data["oob"]
+            for key, value in oob.items():
+                formatted_key = key.replace("_", " ").title()
+                checklist_lines.append(f"- [ ] {formatted_key}: {value}")
+            checklist_lines.append("")
     
-    # Handle Air & Navy snapshot special case
-    elif "air" in section and "navy" in section:
-        # Air subsection
-        checklist_lines.extend(["### Air Plan", ""])
-        air_columns = section["air"]["columns"]
-        for row in section["air"]["rows"]:
-            action_parts = []
-            for i, value in enumerate(row):
-                if value and str(value).strip() != "-":
-                    action_parts.append(str(value))
-            if action_parts:
-                checklist_lines.append(f"- [ ] {' - '.join(action_parts)}")
+    elif section_key == "national_focus_timeline":
+        checklist_lines.extend([
+            "Track your focus progression:",
+            ""
+        ])
         
-        # Navy subsection
-        checklist_lines.extend(["", "### Navy Plan", ""])
-        navy_columns = section["navy"]["columns"]
-        for row in section["navy"]["rows"]:
-            action_parts = []
-            for i, value in enumerate(row):
-                if value and str(value).strip() != "-":
-                    action_parts.append(str(value))
-            if action_parts:
-                checklist_lines.append(f"- [ ] {' - '.join(action_parts)}")
-    
-    # Handle regular sections with columns and rows
-    elif "columns" in section and "rows" in section:
-        columns = section["columns"]
-        
-        # Find the date/timing column
-        date_col_idx = None
-        for i, col in enumerate(columns):
-            if col.lower() in ["date", "start", "start_end", "timing", "#"]:
-                date_col_idx = i
-                break
-        
-        # Process each row
-        for row in section["rows"]:
-            if not row:  # Skip empty rows
-                continue
+        if isinstance(section_data, list):
+            for i, focus in enumerate(section_data, 1):
+                focus_name = focus.get("focus", "Unknown Focus")
+                start_date = focus.get("start", "—")
+                tier = focus.get("tier", "—")
+                why = focus.get("why", "")
                 
-            # Get date/timing info
-            date_info = ""
-            if date_col_idx is not None and date_col_idx < len(row):
-                date_value = row[date_col_idx]
-                if date_value and str(date_value).strip() != "-":
-                    date_info = str(date_value)
-            
-            # Build action details from other columns
-            action_parts = []
-            for i, value in enumerate(row):
-                if i == date_col_idx:  # Skip date column
-                    continue
-                if value and str(value).strip() != "-" and str(value).strip() != "":
-                    col_name = columns[i] if i < len(columns) else f"col_{i}"
-                    
-                    # Format special columns
-                    if col_name.lower() in ["why", "reason"]:
-                        action_parts.append(f"({value})")
-                    elif col_name.lower() == "tier":
-                        action_parts.append(f"[Tier {value}]")
-                    else:
-                        action_parts.append(str(value))
-            
-            # Create checklist item
-            if action_parts:
-                action_text = " - ".join(action_parts)
-                if date_info:
-                    checklist_item = f"- [ ] **{date_info}**: {action_text}"
+                focus_line = f"- [ ] **{focus_name}** ({start_date}) [T{tier}]"
+                if why:
+                    focus_line += f" - {why}"
+                checklist_lines.append(focus_line)
+        checklist_lines.append("")
+    
+    else:
+        # Generic section processing
+        if isinstance(section_data, list):
+            if section_data:
+                first_item = section_data[0]
+                if isinstance(first_item, dict):
+                    # Create checklist from dict items
+                    for item in section_data:
+                        # Try to find a meaningful description
+                        description_keys = ['pick', 'action', 'focus', 'item', 'name', 'tech', 'type']
+                        description = None
+                        for key in description_keys:
+                            if key in item:
+                                description = item[key]
+                                break
+                        
+                        if not description:
+                            description = str(item)
+                        
+                        # Add additional context if available
+                        context_parts = []
+                        if 'date' in item:
+                            context_parts.append(f"({item['date']})")
+                        if 'tier' in item:
+                            context_parts.append(f"[T{item['tier']}]")
+                        if 'why' in item:
+                            context_parts.append(f"- {item['why']}")
+                        
+                        context = " ".join(context_parts)
+                        checklist_lines.append(f"- [ ] {description} {context}")
                 else:
-                    checklist_item = f"- [ ] {action_text}"
-                checklist_lines.append(checklist_item)
-    
-    # Add notes if present (for non-factory-swap sections)
-    if section_id != 5 and "factory-swap" not in section_name.lower():
-        if "notes" in section and section["notes"]:
-            checklist_lines.extend(["", "### Notes"])
-            for note in section["notes"]:
-                checklist_lines.append(f"- {note}")
+                    # Simple list items
+                    for item in section_data:
+                        checklist_lines.append(f"- [ ] {item}")
+            checklist_lines.append("")
+        
+        elif isinstance(section_data, dict):
+            # Handle nested dictionary data
+            for key, value in section_data.items():
+                if isinstance(value, list):
+                    sub_header = key.replace("_", " ").title()
+                    checklist_lines.extend([f"### {sub_header}", ""])
+                    for item in value:
+                        if isinstance(item, dict):
+                            # Try to create meaningful checklist items
+                            item_desc = str(item)
+                            if 'name' in item:
+                                item_desc = item['name']
+                            elif 'type' in item:
+                                item_desc = item['type']
+                            checklist_lines.append(f"- [ ] {item_desc}")
+                        else:
+                            checklist_lines.append(f"- [ ] {item}")
+                    checklist_lines.append("")
+                elif isinstance(value, dict):
+                    sub_header = key.replace("_", " ").title()
+                    checklist_lines.extend([f"### {sub_header}", ""])
+                    for k, v in value.items():
+                        formatted_key = k.replace("_", " ").title()
+                        checklist_lines.append(f"- [ ] {formatted_key}: {v}")
+                    checklist_lines.append("")
+                else:
+                    formatted_key = key.replace("_", " ").title()
+                    checklist_lines.append(f"- [ ] {formatted_key}: {value}")
+            if not any(isinstance(v, (list, dict)) for v in section_data.values()):
+                checklist_lines.append("")
+        
+        else:
+            # Simple value
+            checklist_lines.extend([f"- [ ] {section_data}", ""])
     
     return "\n".join(checklist_lines)
 
@@ -192,7 +138,9 @@ def convert_json_to_checklist(json_data: Dict[str, Any], guide_filename: str = N
     
     # Extract metadata for title
     meta = json_data.get("meta", {})
-    title = meta.get("title", "Strategy Guide Checklist")
+    country = meta.get("country", "Unknown Country")
+    path = meta.get("path", "Strategy Guide")
+    title = f"{country} {path}"
     
     checklist_lines.extend([
         f"# {title} - Checklist",
@@ -213,16 +161,30 @@ def convert_json_to_checklist(json_data: Dict[str, Any], guide_filename: str = N
         ""
     ])
     
-    # Process all sections
-    sections = json_data.get("sections", [])
+    # Process sections
+    sections = json_data.get("sections", {})
     
-    for i, section in enumerate(sections):
-        section_checklist = convert_section_to_checklist(section, guide_filename)
-        checklist_lines.append(section_checklist)
-        
-        # Add separator between sections (except for the last one)
-        if i < len(sections) - 1:
-            checklist_lines.extend(["", "---", ""])
+    # Handle both old format (list) and new format (dict)
+    if isinstance(sections, list):
+        # Old format: sections is a list of section objects
+        for i, section in enumerate(sections):
+            section_id = section.get("id", str(i))
+            section_checklist = convert_section_to_checklist(section_id, section, guide_filename)
+            checklist_lines.append(section_checklist)
+            
+            # Add separator between sections (except for the last one)
+            if i < len(sections) - 1:
+                checklist_lines.extend(["", "---", ""])
+    else:
+        # New format: sections is a dict with section names as keys
+        section_keys = list(sections.keys())
+        for i, (section_key, section_data) in enumerate(sections.items()):
+            section_checklist = convert_section_to_checklist(section_key, section_data, guide_filename)
+            checklist_lines.append(section_checklist)
+            
+            # Add separator between sections (except for the last one)
+            if i < len(section_keys) - 1:
+                checklist_lines.extend(["", "---", ""])
     
     return "\n".join(checklist_lines)
 
